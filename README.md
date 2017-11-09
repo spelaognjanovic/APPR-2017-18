@@ -2,6 +2,8 @@
 
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2017/18
 
+Avtor: Janoš Vidali
+
 ## Tematika
 
 Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
