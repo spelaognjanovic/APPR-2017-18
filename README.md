@@ -2,7 +2,7 @@
 
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2017/18
 
-Avotr: Janoš Vidali
+Avtor: Janoš Vidali
 
 ## Tematika
 
