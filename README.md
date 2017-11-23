@@ -13,7 +13,7 @@ Primerjala bom tudi turnirje med sabo, kdo je največkrat zmagal na enem izmed t
 https://en.wikipedia.org/wiki/Grand_Slam_(tennis) 
 Na povezavi se nahajajo podatki, s pomočjo katerih bi lahko oblikovala tabale po najuspešnejših igralcih in pri katerih letih so prvič osvojili enega izmed Grand Slam turnirjev.
 
-Morda bom vključila še statistiko najboljših 10 igralcev in jih primerjala med sabo. http://www.atpworldtour.com/en/players/roger-federer/f324/player-stats.
+Morda bom vključila še statistiko najboljših 10 igralcev in jih primerjala med sabo. http://www.atpworldtour.com/en/stats/leaderboard?boardType=pressure&timeFrame=52Week&surface=all&versusRank=all&formerNo1=false 
 
 ## Program
 
