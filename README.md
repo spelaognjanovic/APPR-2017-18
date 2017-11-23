@@ -3,6 +3,7 @@
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2017/18
 
 ## Tematika
+analiza
 
 Analizirala bom Grand Slam turnirje v tenisu za moške in ženske. 
 Podatke bom dobila na povezavi: https://en.wikipedia.org/wiki/List_of_Grand_Slam_men%27s_singles_champions, 
