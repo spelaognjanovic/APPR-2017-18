@@ -2,7 +2,7 @@
 
 sl <- locale("sl", decimal_mark = ",", grouping_mark = ".")
 
-# Funkcija, ki uvozi hitrost serve moških in žensk iz Wikipedije
+# Funkcija, ki uvozi hitrost serve iz Wikipedije
 uvozi.hitrost.serve <- function() {
   link <- "https://en.wikipedia.org/wiki/Fastest_recorded_tennis_serves"
   stran <- html_session(link) %>% read_html()
