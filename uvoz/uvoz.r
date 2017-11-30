@@ -2,12 +2,18 @@
 
 sl <- locale("sl", decimal_mark = ",", grouping_mark = ".")
 
-# Funkcija, ki uvozi občine iz Wikipedije
-uvozi.obcine <- function() {
-  link <- "http://sl.wikipedia.org/wiki/Seznam_ob%C4%8Din_v_Sloveniji"
+# Funkcija, ki uvozi hitrost serve moških in žensk iz Wikipedije
+uvozi.hitrost.serve <- function() {
+  link <- "https://en.wikipedia.org/wiki/Fastest_recorded_tennis_serves"
   stran <- html_session(link) %>% read_html()
-  tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable sortable']") %>%
-    .[[1]] %>% html_table(dec = ",")
+  tabele <- stran %>% html_nodes(xpath="//table[@class='wikitable']") %>% lapply(html_table)
+  spoli <- c("moski", "zenske")
+  tabele[[1]]$spol <- factor("moski", levels = spoli)
+  tabele[[2]]$spol <- factor("zenske", levels = spoli)
+  colnames(tabele[[2]]) <- colnames(tabele[[1]])
+  tabela <- bind_rows(tabele)
+  tabela$Speed <- parse_number(tabela$Speed)
+  
   for (i in 1:ncol(tabela)) {
     if (is.character(tabela[[i]])) {
       Encoding(tabela[[i]]) <- "UTF-8"
