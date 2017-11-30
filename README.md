@@ -3,17 +3,18 @@
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2017/18
 
 ## Tematika
+analiza
 
 Analizirala bom Grand Slam turnirje v tenisu za moške in ženske. 
 Podatke bom dobila na povezavi: https://en.wikipedia.org/wiki/List_of_Grand_Slam_men%27s_singles_champions, 
 s pomočjo katerih bom oblikovala prvo tabelo, kjer bodo vrstice predstavljale leto tekmovanja, stolpci pa eno od turnirjev Grand Slama (Odprto prvenstvo Avstralije, Anglije, ZDA in Francije).
 
-Primerjala bom tudi turnirje med sabo,kdo je največkrat zmagal na enem izmed turnirjev. Nato bom še primerjala igralce po številu zmag. 
+Primerjala bom tudi turnirje med sabo, kdo je največkrat zmagal na enem izmed turnirjev. Nato bom še primerjala igralce po številu zmag. 
 
 https://en.wikipedia.org/wiki/Grand_Slam_(tennis) 
 Na povezavi se nahajajo podatki, s pomočjo katerih bi lahko oblikovala tabale po najuspešnejših igralcih in pri katerih letih so prvič osvojili enega izmed Grand Slam turnirjev.
 
-Morda bom vključila še statistiko najboljših igralcev. Kot na primer za Rogerja Federerja http://www.atpworldtour.com/en/players/roger-federer/f324/player-stats.
+Morda bom vključila še statistiko najboljših 10 igralcev in jih primerjala med sabo. http://www.atpworldtour.com/en/stats/leaderboard?boardType=pressure&timeFrame=52Week&surface=all&versusRank=all&formerNo1=false 
 
 ## Program
 
