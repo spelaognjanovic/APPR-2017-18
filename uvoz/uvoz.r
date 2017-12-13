@@ -34,6 +34,7 @@ uvozi.zmagovalce <- function() {
       Encoding(tabela[[i]]) <- "UTF-8"
     }
   }
+    
   colnames(tabela) <- c("obcina", "povrsina", "prebivalci", "gostota", "naselja",
                         "ustanovitev", "pokrajina", "regija", "odcepitev")
   tabela$obcina <- gsub("Slovenskih", "Slov.", tabela$obcina)
@@ -48,29 +49,18 @@ uvozi.zmagovalce <- function() {
   return(tabela)
 }
 
-# Funkcija, ki uvozi podatke o tenisačih (sezina, št. tekem, ime, starost)
+# Funkcija, ki uvozi podatke o tenisačih (sezona, št. tekem, ime, starost)
 uvozi.tenisaci <- function() {
-  link <- "http://www.ultimatetennisstatistics.com/seasons"
-  stran <- html_session(link) %>% read_html()
-  tabela <- stran %>% html_nodes(xpath="//table[@class='table table-condensed table-hover table-striped']") %>%
-    .[[1]] %>% html_table(dec = ",")
-  for (i in 1:ncol(tabela)) {
-    if (is.character(tabela[[i]])) {
-      Encoding(tabela[[i]]) <- "UTF-8"
-    }
-  }
-  colnames(tabela) <- c("obcina", "povrsina", "prebivalci", "gostota", "naselja",
-                        "ustanovitev", "pokrajina", "regija", "odcepitev")
-  tabela$obcina <- gsub("Slovenskih", "Slov.", tabela$obcina)
-  tabela$obcina[tabela$obcina == "Kanal ob Soči"] <- "Kanal"
-  tabela$obcina[tabela$obcina == "Loški potok"] <- "Loški Potok"
-  for (col in c("povrsina", "prebivalci", "gostota", "naselja", "ustanovitev")) {
-    tabela[[col]] <- parse_number(tabela[[col]], na = "-", locale = sl)
-  }
-  for (col in c("obcina", "pokrajina", "regija")) {
-    tabela[[col]] <- factor(tabela[[col]])
-  }
-  return(tabela)
+  link <- paste0("http://www.ultimatetennisstatistics.com/seasonsTable?current=1&rowCount=20&sort[season]=desc&searchPhrase=&_=",
+                 as.numeric(Sys.time()))
+  data <- content(GET(link))$rows %>% lapply(function(x) {
+    country <- x$bestPlayer$country$name
+    x$bestPlayer <- c(x$bestPlayer$country, x$bestPlayer)
+    x$bestPlayer$country <- country
+    x <- c(x, x$bestPlayer)
+    x$bestPlayer <- NULL
+    return(x)
+  }) %>% bind_rows()
 }
 
 # Zapišimo podatke v razpredelnico obcine
