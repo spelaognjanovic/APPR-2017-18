@@ -45,7 +45,7 @@ uvozi.zmagovalce <- function() {
 uvozi.tenisaci <- function() {
   link <- paste0("http://www.ultimatetennisstatistics.com/seasonsTable?current=1&rowCount=20&sort[season]=desc&searchPhrase=&_=",
                  as.numeric(Sys.time()))
-  tenisaci <- content(GET(link))$rows %>% lapply(function(x) {
+  data <- content(GET(link))$rows %>% lapply(function(x) {
     country <- x$bestPlayer$country$name
     x$bestPlayer <- c(x$bestPlayer$country, x$bestPlayer)
     x$bestPlayer$country <- country
@@ -53,6 +53,7 @@ uvozi.tenisaci <- function() {
     x$bestPlayer <- NULL
     return(x)
   }) %>% bind_rows()
+  data<-data[,-c(2,3,4,5,6,7)]
 }
 
 
