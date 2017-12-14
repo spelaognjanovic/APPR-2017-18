@@ -14,6 +14,7 @@ uvozi.hitrost.serve <- function() {
   tabela1 <- bind_rows(tabele)
   tabela1$Speed <- parse_number(tabela$Speed)
   
+  
   return(tabela1)
 }
 
@@ -21,9 +22,10 @@ uvozi.hitrost.serve <- function() {
 uvozi.zmagovalce <- function() {
   link <- "https://sl.wikipedia.org/wiki/Seznam_zmagovalcev_turnirjev_za_Grand_Slam_-_mo%C5%A1ki_posami%C4%8Dno"
   stran <- html_session(link) %>% read_html()
-  tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable']") %>% .[[1]] %>% html_table(fill = TRUE)
+  zmagovalci <- stran %>% html_nodes(xpath="//table[@class='wikitable']") %>% .[[1]] %>% html_table(fill = TRUE)
     .[[1]] %>% html_table(dec = ",")
-    
+  
+      
   html_tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable']") %>% .[[1]]
   tabela <- html_tabela %>% html_table(fill = TRUE)
   drzave <- html_tabela %>% html_nodes(xpath=".//tr") %>% .[-1] %>%
@@ -38,8 +40,12 @@ uvozi.zmagovalce <- function() {
   colnames(drzave) <- colnames(tabela)
 
   return(tabela)
+  
 }
-
+drzave <- drzave[-c(51,52),]
+drzave <- drzave[-c(71:143),]
+zmagovalci <- zmagovalci[-c(51,52),]
+zmagovalci <- zmagovalci[-c(71:143),]
 
 # Funkcija, ki uvozi podatke o tenisačih (sezona, št. tekem, ime, starost)
 uvozi.tenisaci <- function() {
@@ -53,7 +59,7 @@ uvozi.tenisaci <- function() {
     x$bestPlayer <- NULL
     return(x)
   }) %>% bind_rows()
-  data<-data[,-c(2,3,4,5,6,7)]
+  data<-data[,-c(2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,23,25,26,27)]
 }
 
 
