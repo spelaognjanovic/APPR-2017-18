@@ -17,6 +17,7 @@ uvozi.hitrost.serve <- function() {
   
   return(tabela1)
 }
+tabela1<-tabela1[-c(11:33),]
 
 # Funkcija, ki uvozi zmagovalce Grand Slam turnirja
 uvozi.zmagovalce <- function() {
