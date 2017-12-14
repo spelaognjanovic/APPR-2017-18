@@ -11,16 +11,10 @@ uvozi.hitrost.serve <- function() {
   tabele[[1]]$spol <- factor("moski", levels = spoli)
   tabele[[2]]$spol <- factor("zenske", levels = spoli)
   colnames(tabele[[2]]) <- colnames(tabele[[1]])
-  tabela <- bind_rows(tabele)
-  tabela$Speed <- parse_number(tabela$Speed)
+  tabela1 <- bind_rows(tabele)
+  tabela1$Speed <- parse_number(tabela$Speed)
   
-  for (i in 1:ncol(tabela)) {
-    if (is.character(tabela[[i]])) {
-      Encoding(tabela[[i]]) <- "UTF-8"
-    }
-  }
-
-  return(tabela)
+  return(tabela1)
 }
 
 # Funkcija, ki uvozi zmagovalce Grand Slam turnirja
@@ -29,31 +23,29 @@ uvozi.zmagovalce <- function() {
   stran <- html_session(link) %>% read_html()
   tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable']") %>% .[[1]] %>% html_table(fill = TRUE)
     .[[1]] %>% html_table(dec = ",")
-  for (i in 1:ncol(tabela)) {
-    if (is.character(tabela[[i]])) {
-      Encoding(tabela[[i]]) <- "UTF-8"
-    }
-  }
     
-  colnames(tabela) <- c("obcina", "povrsina", "prebivalci", "gostota", "naselja",
-                        "ustanovitev", "pokrajina", "regija", "odcepitev")
-  tabela$obcina <- gsub("Slovenskih", "Slov.", tabela$obcina)
-  tabela$obcina[tabela$obcina == "Kanal ob Soči"] <- "Kanal"
-  tabela$obcina[tabela$obcina == "Loški potok"] <- "Loški Potok"
-  for (col in c("povrsina", "prebivalci", "gostota", "naselja", "ustanovitev")) {
-    tabela[[col]] <- parse_number(tabela[[col]], na = "-", locale = sl)
-  }
-  for (col in c("obcina", "pokrajina", "regija")) {
-    tabela[[col]] <- factor(tabela[[col]])
-  }
+  html_tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable']") %>% .[[1]]
+  tabela <- html_tabela %>% html_table(fill = TRUE)
+  drzave <- html_tabela %>% html_nodes(xpath=".//tr") %>% .[-1] %>%
+    sapply(. %>% html_nodes(xpath="./td") %>%
+             lapply(. %>% html_nodes(xpath="./a[@class='image']") %>% html_attr("href") %>%
+                      sapply(. %>% { gsub("US_.*_Flag", "Flag_of_the_United_States", .) } %>%
+                               strapplyc("Flag_of_(.*)\\.svg") %>%
+                               { gsub("_", " ", gsub("_\\(.*", "", gsub("^the_", "", .))) }) %>%
+                      .[1]) %>% { ifelse(sapply(., is.list), NA, .) %>%
+                          c(rep(NA, 5 - length(.)))} %>%
+             unlist()) %>% t() %>% data.frame()
+  colnames(drzave) <- colnames(tabela)
+
   return(tabela)
 }
+
 
 # Funkcija, ki uvozi podatke o tenisačih (sezona, št. tekem, ime, starost)
 uvozi.tenisaci <- function() {
   link <- paste0("http://www.ultimatetennisstatistics.com/seasonsTable?current=1&rowCount=20&sort[season]=desc&searchPhrase=&_=",
                  as.numeric(Sys.time()))
-  data <- content(GET(link))$rows %>% lapply(function(x) {
+  tenisaci <- content(GET(link))$rows %>% lapply(function(x) {
     country <- x$bestPlayer$country$name
     x$bestPlayer <- c(x$bestPlayer$country, x$bestPlayer)
     x$bestPlayer$country <- country
@@ -62,6 +54,7 @@ uvozi.tenisaci <- function() {
     return(x)
   }) %>% bind_rows()
 }
+
 
 # Zapišimo podatke v razpredelnico obcine
 obcine <- uvozi.obcine()
