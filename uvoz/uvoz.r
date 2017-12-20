@@ -14,7 +14,6 @@ uvozi.hitrost.serve <- function() {
   tabela1 <- bind_rows(tabele)
   tabela1$Speed <- parse_number(tabela$Speed)
   
-  
   return(tabela1)
 }
 tabela1<-tabela1[-c(11:33),]
@@ -61,6 +60,26 @@ uvozi.tenisaci <- function() {
     return(x)
   }) %>% bind_rows()
   data<-data[,-c(2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,23,25,26,27)]
+  data[1,6]=31
+  data[8,6]=24
+  data[10,6]=22
+  data[2,6]=29
+  data[3,6]=28
+  data[4,6]=27
+  data[6,6]=25
+  data[7,6]=24
+  data[9,6]=28
+  data[11,6]=26
+  data[12,6]=25
+  data[13,6]=24
+  data[14,6]=23
+  data[15,6]=21
+  data[16,6]=21
+  data[17,6]=20
+  data[19,6]=29
+  data[20,6]=27
+  colnames(data)=c("Sezona", " turnirji", "zun", "not", 
+                   "vse tekme", "leto", "igralec", "drzava", "aktiv")
 }
 
 
