@@ -10,7 +10,7 @@ uvozi.hitrost.serve <- function() {
   spoli <- c("moski", "zenske")
   tabele[[1]]$spol <- factor("moski", levels = spoli)
   tabele[[2]]$spol <- factor("zenske", levels = spoli)
-  colnames(tabele[[2]]) <- colnames(tabele[[1]])
+#colnames(tabele[[2]]) <- colnames(tabele[[1]])
   tabela1 <- bind_rows(tabele)
   tabela1$Speed <- parse_number(tabela$Speed)
   
@@ -38,14 +38,16 @@ uvozi.zmagovalce <- function() {
                           c(rep(NA, 5 - length(.)))} %>%
              unlist()) %>% t() %>% data.frame()
   colnames(drzave) <- colnames(tabela)
+  
+  drzave <- drzave[-c(51,52),]
+  drzave <- drzave[-c(71:143),]
+  zmagovalci <- zmagovalci[-c(51,52),]
+  zmagovalci <- zmagovalci[-c(71:143),]
 
   return(tabela)
   
 }
-drzave <- drzave[-c(51,52),]
-drzave <- drzave[-c(71:143),]
-zmagovalci <- zmagovalci[-c(51,52),]
-zmagovalci <- zmagovalci[-c(71:143),]
+
 
 # Funkcija, ki uvozi podatke o tenisačih (sezona, št. tekem, ime, starost)
 uvozi.tenisaci <- function() {
@@ -59,7 +61,7 @@ uvozi.tenisaci <- function() {
     x$bestPlayer <- NULL
     return(x)
   }) %>% bind_rows()
-  data<-data[,-c(2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,23,25,26,27)]
+  data<-data[,-c(2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,23,25,26,27,29)]
   data[1,6]=31
   data[8,6]=24
   data[10,6]=22
@@ -78,8 +80,8 @@ uvozi.tenisaci <- function() {
   data[17,6]=20
   data[19,6]=29
   data[20,6]=27
-  colnames(data)=c("Sezona", " turnirji", "zun", "not", 
-                   "vse tekme", "leto", "igralec", "drzava", "aktiv")
+  colnames(data)=c("Sezona", " št. turnirjev", "na prostem", "v dvorani", 
+                   "vse tekme", "starost igralca", "igralec", "država")
 }
 
 
