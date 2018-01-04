@@ -6,17 +6,18 @@ sl <- locale("sl", decimal_mark = ",", grouping_mark = ".")
 uvozi.hitrost.serve <- function() {
   link <- "https://en.wikipedia.org/wiki/Fastest_recorded_tennis_serves"
   stran <- html_session(link) %>% read_html()
-  tabele <- stran %>% html_nodes(xpath="//table[@class='wikitable']") %>% lapply(html_table)
+  tabele <- stran %>% html_nodes(xpath="//table[@class='wikitable']") %>% lapply(html_table, fill = TRUE)
   spoli <- c("moski", "zenske")
+  tabele[[1]] <- tabele[[1]][1:4]
   tabele[[1]]$spol <- factor("moski", levels = spoli)
   tabele[[2]]$spol <- factor("zenske", levels = spoli)
-#colnames(tabele[[2]]) <- colnames(tabele[[1]])
-  tabela1 <- bind_rows(tabele)
-  tabela1$Speed <- parse_number(tabela$Speed)
-  
+  colnames(tabele[[2]]) <- colnames(tabele[[1]])
+  tabela1 <- bind_rows(tabele) %>% mutate(Speed = parse_number(Speed),
+                                          Event = parse_number(Event)) %>%
+    filter(Rank <= 10)
   return(tabela1)
 }
-tabela1<-tabela1[-c(11:33),]
+hitrosti.serve <- uvozi.hitrost.serve()
 
 # Funkcija, ki uvozi zmagovalce Grand Slam turnirja
 uvozi.zmagovalce <- function() {
@@ -83,7 +84,6 @@ uvozi.tenisaci <- function() {
   colnames(data)=c("Sezona", " št. turnirjev", "na prostem", "v dvorani", 
                    "vse tekme", "starost igralca", "igralec", "država")
 }
-
 
 # Zapišimo podatke v razpredelnico obcine
 obcine <- uvozi.obcine()
