@@ -18,7 +18,6 @@ uvozi.hitrost.serve <- function() {
   return(tabela1)
 }
 hitrosti.serve <- uvozi.hitrost.serve()   
-#tu bi skr bolp blo da namest EVENT napišeš LETO. pa Manco bari kk je naredla Slovensko
 
 # Funkcija, ki uvozi zmagovalce Grand Slam turnirja
 
@@ -105,11 +104,11 @@ uvozi.tenisaci <- function() {
     return(x)
   }) %>% bind_rows()
   data<-data[,-c(2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,23,25,26,27,29)]
-  colnames(data)=c("Sezona", " št. turnirjev", "na prostem", "v dvorani", 
-                   "vse tekme", "dominantna starost", "igralec", "država")
+  colnames(data)=c("Sezona", "St_turnirjev", "Na_prostem", "v_dvorani", 
+                   "Vse_tekme", "Dominantna_starost", "Igralec", "Država")
   return(data)
 }
-tenesaci <- uvozi.tenisaci()
+tenisaci <- uvozi.tenisaci()
 
 
 
