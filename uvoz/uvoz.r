@@ -15,6 +15,7 @@ uvozi.hitrost.serve <- function() {
   tabela1 <- bind_rows(tabele) %>% mutate(Speed = parse_number(Speed),
                                           Event = parse_number(Event)) %>%
     filter(Rank <= 10)
+  colnames(tabela1) <- c("Razvrstitev", "Igralec", "Hitrost", "Leto","Spol")
   return(tabela1)
 }
 hitrosti.serve <- uvozi.hitrost.serve()   
@@ -102,9 +103,9 @@ uvozi.tenisaci <- function() {
     x$bestPlayer <- NULL
     return(x)
   }) %>% bind_rows()
-  data<-data[,-c(2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,23,25,26,27,29)]
-  colnames(data)=c("Sezona", "St_turnirjev", "Na_prostem", "v_dvorani", 
-                   "Vse_tekme", "Dominantna_starost", "Igralec", "Država")
+  data<-data[,-c(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,21,23,25,26,27,29)]
+  colnames(data)=c("Sezona", "Na_prostem", "V_dvorani",
+                   "Prevladujoca_starost", "Igralec", "Drzava")
   return(data)
 }
 tenisaci <- uvozi.tenisaci()
