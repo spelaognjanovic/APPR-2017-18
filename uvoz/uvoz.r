@@ -20,7 +20,6 @@ uvozi.hitrost.serve <- function() {
 hitrosti.serve <- uvozi.hitrost.serve()   
 
 # Funkcija, ki uvozi zmagovalce Grand Slam turnirja
-
 uvozi.zmagovalce <- function() {
   link <- "https://sl.wikipedia.org/wiki/Seznam_zmagovalcev_turnirjev_za_Grand_Slam_-_mo%C5%A1ki_posami%C4%8Dno"
   stran <- html_session(link) %>% read_html()
@@ -36,7 +35,7 @@ uvozi.zmagovalce <- function() {
                           c(rep(NA, 5 - length(.)))} %>%
              unlist()) %>% t() %>% data.frame()
   colnames(drzave) <- colnames(html_tabela)
-  colnames(drzave) <- c("A","Avstralija", "Anglija","Francija","ZDA")
+  colnames(drzave) <- c("A","Avstralija", "Francija","Anglija","ZDA")
   drzave <- drzave[-c(51,52),]
  
   drzave <- drzave[,-c(1)]
@@ -70,7 +69,7 @@ uvozi.drzave <- function() {
                           c(rep(NA, 5 - length(.)))} %>%
              unlist()) %>% t() %>% data.frame()
   colnames(drzave) <- colnames(html_tabela)
-  colnames(drzave) <- c("A","Avstralija", "Anglija","Francija","ZDA")
+  colnames(drzave) <- c("A","Avstralija", "Francija","Anglija","ZDA")
   drzave <- drzave[-c(51,52),]
   
   drzave <- drzave[,-c(1)]
