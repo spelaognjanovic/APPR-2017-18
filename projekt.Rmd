@@ -21,7 +21,8 @@ source("lib/libraries.r", encoding = "UTF-8")
 
 # Izbira teme
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
+TENIS
+Analiza zmag moških in žensk na Grand Slamih od 1884 do 2017. 
 
 ***
 
