@@ -11,7 +11,7 @@ top10 <- ggplot(zmagovalci %>% group_by(Zmagovalec) %>% summarise(stevilo = n())
 plot(top10)
 
 #Graf 2 hitrost serve
-serva <- ggplot(hitrosti.serve, aes(x = Rank, y = Hitrost, color = Spol)) + geom_line(size = 0.75) + geom_point(size = 1.5) +
+serva <- ggplot(hitrosti.serve, aes(x = Razvrstitev, y = Hitrost, color = Spol)) + geom_line(size = 0.75) + geom_point(size = 1.5) +
   xlab("Razporeditev") + ylab("Km/s") + ggtitle("Hitrost serve")
 
 plot(serva)
@@ -29,10 +29,11 @@ svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthd
                         "ne_50m_admin_0_countries", encoding = "UTF-8") %>%
   pretvori.zemljevid() %>% filter(lat > -60)
 
-ponovitev <- drzave.tidy %>% group_by(Drzava) %>% summarise(stevilo = n()) %>% arrange(desc(stevilo))  
+ponovitev <- zmagovalci %>% group_by(Drzava) %>% summarise(stevilo = n()) %>% arrange(desc(stevilo))  
 ponovitev <- ponovitev %>% filter(Drzava != "NA")
 ponovitev$Drzava <- gsub("United States", "United States of America", ponovitev$Drzava)
 ponovitev$Drzava <- gsub("Serbia", "Republic of Serbia", ponovitev$Drzava)
+ponovitev$Drzava <- gsub("Czech Republic", "Czechia", ponovitev$Drzava)
 zemljevid.drzav <- ggplot() +
   geom_polygon(data = ponovitev %>% 
                  mutate(SOVEREIGNT = parse_factor(Drzava, levels(svet$SOVEREIGNT))) %>%

@@ -43,64 +43,17 @@ uvozi.zmagovalce <- function() {
   zmagovalci <- zmagovalci[-c(51,52),]
   drzave$Leto <- zmagovalci$Leto <- parse_number(zmagovalci$Leto)
   drzave.tidy <- melt(drzave, id.vars = "Leto", variable.name = "Prvenstvo", value.name = "Drzava")
-  zmagovalci.tidy <- zmagovalci
-  zmagovalci.tidy$Avstralija <- gsub("Đ", "Dj", zmagovalci.tidy$Avstralija)
-  zmagovalci.tidy$Avstralija <- gsub("ć", "c", zmagovalci.tidy$Avstralija) 
-  zmagovalci.tidy$Anglija <- gsub("Đ", "Dj", zmagovalci.tidy$Anglija)
-  zmagovalci.tidy$Anglija <- gsub("ć", "c", zmagovalci.tidy$Anglija) 
-  zmagovalci.tidy$Francija <- gsub("Đ", "Dj", zmagovalci.tidy$Francija)
-  zmagovalci.tidy$Francija <- gsub("ć", "c", zmagovalci.tidy$Francija) 
-  zmagovalci.tidy$ZDA <- gsub("Đ", "Dj", zmagovalci.tidy$ZDA)
-  zmagovalci.tidy$ZDA <- gsub("ć", "c", zmagovalci.tidy$ZDA)
   
-  zmagovalci.tidy <- melt(zmagovalci, id.vars = "Leto", variable.name = "Prvenstvo",
-                          value.name = "Zmagovalec") %>% inner_join(drzave.tidy) %>%
-    mutate(Zmagovalec = Zmagovalec %>% strapplyc("^([^(]*)")%>% unlist() %>%
-             trimws() %>% parse_character()) %>% filter(Leto >= 1950)
-  
-  zmagovalci.tidy$Zmagovalec <- gsub("Đ", "Dj", zmagovalci.tidy$Zmagovalec)
-  return(zmagovalci.tidy)
-  
-}
-
-zmagovalci <- uvozi.zmagovalce()
-
-
-uvozi.drzave <- function() {
-  link <- "https://sl.wikipedia.org/wiki/Seznam_zmagovalcev_turnirjev_za_Grand_Slam_-_mo%C5%A1ki_posami%C4%8Dno"
-  stran <- html_session(link) %>% read_html()
-  html_tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable']") %>% .[[1]]
-  zmagovalci <- html_tabela %>% html_table(fill = TRUE)
-  drzave <- html_tabela %>% html_nodes(xpath=".//tr") %>% .[-1] %>%
-    sapply(. %>% html_nodes(xpath="./td") %>%
-             lapply(. %>% html_nodes(xpath="./a[@class='image']") %>% html_attr("href") %>%
-                      sapply(. %>% { gsub("US_.*_Flag", "Flag_of_the_United_States", .) } %>%
-                               strapplyc("Flag_of_(.*)\\.svg") %>%
-                               { gsub("_", " ", gsub("_\\(.*", "", gsub("^the_", "", .))) }) %>%
-                      .[1]) %>% { ifelse(sapply(., is.list), NA, .) %>%
-                          c(rep(NA, 5 - length(.)))} %>%
-             unlist()) %>% t() %>% data.frame()
-  colnames(drzave) <- colnames(html_tabela)
-  colnames(drzave) <- c("A","Avstralija", "Francija","Anglija","ZDA")
-  drzave <- drzave[-c(51,52),]
-  
-  drzave <- drzave[,-c(1)]
-  zmagovalci <- zmagovalci[-c(51,52),]
-  drzave$Leto <- zmagovalci$Leto <- parse_number(zmagovalci$Leto)
-  drzave.tidy <- melt(drzave, id.vars = "Leto", variable.name = "Prvenstvo", value.name = "Drzava")
   zmagovalci.tidy <- melt(zmagovalci, id.vars = "Leto", variable.name = "Prvenstvo",
                           value.name = "Zmagovalec") %>% inner_join(drzave.tidy) %>%
     mutate(Zmagovalec = Zmagovalec %>% strapplyc("^([^(]*)") %>% unlist() %>%
              trimws() %>% parse_character()) %>% filter(Leto >= 1950)
   
-  return(drzave.tidy)
+  return(zmagovalci.tidy)
   
 }
 
-drzave <- uvozi.drzave()
-
-
-
+zmagovalci <- uvozi.zmagovalce()
 
 # Funkcija, ki uvozi podatke o tenisačih (sezona, št. tekem, ime, starost)
 uvozi.tenisaci <- function() {
