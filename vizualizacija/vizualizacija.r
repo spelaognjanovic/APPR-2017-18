@@ -1,61 +1,39 @@
 # 3. faza: Vizualizacija podatkov
 
 #Graf 1 najboljših 10 igralcev z največ zmagami na Grand Slam turnirjih.
-top10 <- ggplot(zmagovalci %>% group_by(DRZAVA) %>% summarise(stevilo = n()) %>%
+top10 <- ggplot(zmagovalci %>% group_by(Zmagovalec) %>% summarise(stevilo = n()) %>%
                   arrange(desc(stevilo)) %>% top_n(10),
-                aes(x = reorder(DRZAVA, -stevilo), y = stevilo)) + geom_col() +
-  xlab("Država") + ylab("Število uvrstitev") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+                aes(x = reorder(Zmagovalec, -stevilo), y = stevilo)) +
+  geom_col(fill="blue") + xlab("Igralec") + ylab("Število zmag na") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  ggtitle("Razvrstitev po številu zmag na Grand Slam turnirjih")
 
+plot(top10)
 
 #Graf 2 hitrost serve
-library(ggplot2)
+serva <- ggplot(hitrosti.serve, aes(x = Rank, y = Hitrost, color = Spol)) + geom_line(size = 0.75) + geom_point(size = 1.5) +
+  xlab("Razporeditev") + ylab("Km/s") + ggtitle("Hitrost serve")
 
-x = as.array(1:50 / 10)
-y = apply(x,1,function (x) x**2)
-z = apply(x,1,function (x) x*log(x))
-D = data.frame(x=x, y=y, z=z)
+plot(serva)
 
-ggp = ggplot(data=D) 
-ggp = ggp + geom_line(aes(x = x, y = y), color="red")
-ggp = ggp + geom_line(aes(x = x, y = z), color="blue")
-ggp = ggp + xlab("x-os") + ylab("km/s") + ggtitle("Hitrost serve")
-
-print(ggp)
-
-#Ne
-#tocke <- ggplot(hitrosti.serve, aes(x =reorder(Player, -Speed), y = Speed)) + geom_col() +
- # xlab("Leto") + ylab("Hitrost serve") +
-  #theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
-
-
-#Graf 3 gostota točk, prikaz dominantne starosti
-library(ggplot2)
-library(gridExtra)
-
-ggp = ggplot(data)
-ggp = ggp + geom_point(aes(x=Petal.Length, y=Petal.Width, color=Species))
-ggp = ggp + geom_smooth(aes(x=Petal.Length, y=Petal.Width))
-print(ggp)
-
-# Primer prikazovanja gostote toÄŤk.
-rand_x =rnorm(10**4)
-rand_y =rnorm(10**4)
-D = data.frame(x=rand_x, y=rand_y)
-
-ggp1 = ggplot(data=D)
-ggp1 = ggp1 + geom_point(aes(x=x, y=y))
-
-ggp2 = ggplot(data=D)
-ggp2 = ggp2 + geom_hex(aes(x=x, y=y))
-ggp2 = ggp2 + guides(fill=guide_legend("# of points"))
-
-grid.arrange(ggp1, ggp2, ncol=2)
+#Graf 3, prikaz dominantne starosti
+leto <- ggplot(tenisaci, aes(x = Sezona, y = Prevladujoca_starost)) + geom_line() + geom_point() +
+  xlab("Leto") + ylab("Starost") + ggtitle("Prevladujoča starost igralcev v posamezni sezoni") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) 
+"ka tto theme sploh pomeni"
+plot(leto)
 
 # Uvozimo zemljevid.
 
 svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
                         "ne_50m_admin_0_countries", encoding = "UTF-8")
+
+
+zemljevid.drzav <- ggplot() +
+  geom_polygon(data = drzave %>% summarise(stevilo = sum(Drzava)) %>% right_join(svet),
+               aes(x = long, y = lat, group = group, fill = stevilo)) +
+  coord_cartesian(xlim = c(-22, 40), ylim = c(30, 70))
+
 
 
 

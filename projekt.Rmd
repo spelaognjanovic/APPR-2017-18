@@ -21,8 +21,12 @@ source("lib/libraries.r", encoding = "UTF-8")
 
 # Izbira teme
 
+<<<<<<< HEAD
 TENIS
 Analiza zmag moških in žensk na Grand Slamih od 1884 do 2017. 
+=======
+Za temo sem si izbrala tenis. V projektu bom primerjala hitrost serve moških in žensk, najboljših 10 igralcev po številu zmag na Grand Slam turnirjih. Na zemljevidu bom upodobila države, ki so največkrat zmagale na Grand Slam turnirijh in tako videla, katera država je najuspešnejša. Primerjala bom tudi kako starost igralcev vpliva na njihovo uspešnost. 
+>>>>>>> 81cb187e0bc8e56bf08ddb02a2be8868dbc6218a
 
 ***
 
