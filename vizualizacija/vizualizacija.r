@@ -26,25 +26,19 @@ plot(leto)
 # Uvozimo zemljevid.
 
 svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
-                        "ne_50m_admin_0_countries", encoding = "UTF-8")
+                        "ne_50m_admin_0_countries", encoding = "UTF-8") %>%
+  pretvori.zemljevid() %>% filter(lat > -60)
 
-
+ponovitev <- drzave.tidy %>% group_by(Drzava) %>% summarise(stevilo = n()) %>% arrange(desc(stevilo))  
+ponovitev <- ponovitev %>% filter(Drzava != "NA")
+ponovitev$Drzava <- gsub("United States", "United States of America", ponovitev$Drzava)
+ponovitev$Drzava <- gsub("Serbia", "Republic of Serbia", ponovitev$Drzava)
 zemljevid.drzav <- ggplot() +
-  geom_polygon(data = drzave %>% summarise(stevilo = sum(Drzava)) %>% right_join(svet),
-               aes(x = long, y = lat, group = group, fill = stevilo)) +
-  coord_cartesian(xlim = c(-22, 40), ylim = c(30, 70))
+  geom_polygon(data = ponovitev %>% 
+                 mutate(SOVEREIGNT = parse_factor(Drzava, levels(svet$SOVEREIGNT))) %>%
+                 right_join(svet),
+               aes(x = long, y = lat, group = group, fill = stevilo))
+
+print(zemljevid.drzav)
 
 
-
-
-
-zemljevid <- uvozi.zemljevid("http://baza.fmf.uni-lj.si/OB.zip",
-                             "OB/OB", encoding = "Windows-1250")
-levels(zemljevid$OB_UIME) <- levels(zemljevid$OB_UIME) %>%
-  { gsub("Slovenskih", "Slov.", .) } %>% { gsub("-", " - ", .) }
-zemljevid$OB_UIME <- factor(zemljevid$OB_UIME, levels = levels(obcine$obcina))
-zemljevid <- pretvori.zemljevid(zemljevid)
-
-# Izračunamo povprečno velikost družine
-povprecja <- druzine %>% group_by(obcina) %>%
-  summarise(povprecje = sum(velikost.druzine * stevilo.druzin) / sum(stevilo.druzin))

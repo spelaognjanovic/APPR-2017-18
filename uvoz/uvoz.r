@@ -43,11 +43,22 @@ uvozi.zmagovalce <- function() {
   zmagovalci <- zmagovalci[-c(51,52),]
   drzave$Leto <- zmagovalci$Leto <- parse_number(zmagovalci$Leto)
   drzave.tidy <- melt(drzave, id.vars = "Leto", variable.name = "Prvenstvo", value.name = "Drzava")
+  zmagovalci.tidy <- zmagovalci
+  zmagovalci.tidy$Avstralija <- gsub("Đ", "Dj", zmagovalci.tidy$Avstralija)
+  zmagovalci.tidy$Avstralija <- gsub("ć", "c", zmagovalci.tidy$Avstralija) 
+  zmagovalci.tidy$Anglija <- gsub("Đ", "Dj", zmagovalci.tidy$Anglija)
+  zmagovalci.tidy$Anglija <- gsub("ć", "c", zmagovalci.tidy$Anglija) 
+  zmagovalci.tidy$Francija <- gsub("Đ", "Dj", zmagovalci.tidy$Francija)
+  zmagovalci.tidy$Francija <- gsub("ć", "c", zmagovalci.tidy$Francija) 
+  zmagovalci.tidy$ZDA <- gsub("Đ", "Dj", zmagovalci.tidy$ZDA)
+  zmagovalci.tidy$ZDA <- gsub("ć", "c", zmagovalci.tidy$ZDA)
+  
   zmagovalci.tidy <- melt(zmagovalci, id.vars = "Leto", variable.name = "Prvenstvo",
                           value.name = "Zmagovalec") %>% inner_join(drzave.tidy) %>%
-    mutate(Zmagovalec = Zmagovalec %>% strapplyc("^([^(]*)") %>% unlist() %>%
+    mutate(Zmagovalec = Zmagovalec %>% strapplyc("^([^(]*)")%>% unlist() %>%
              trimws() %>% parse_character()) %>% filter(Leto >= 1950)
   
+  zmagovalci.tidy$Zmagovalec <- gsub("Đ", "Dj", zmagovalci.tidy$Zmagovalec)
   return(zmagovalci.tidy)
   
 }
