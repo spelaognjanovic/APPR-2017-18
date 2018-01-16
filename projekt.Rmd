@@ -35,7 +35,7 @@ Podatke sem uvozila v html oblikah iz [wikipedije](https://en.wikipedia.org/wiki
 V prvi tabeli **hitrosti.serve** so podatki o tenisačih, ki imajo najmočnejšo servo v zgodovini tenisa. Podatki so zbrani za prvih deset moških in žensk. Tabela vsebuje 5 stolpcev in sicer Razvrstitev (numeric), ki prikazuje prvih 10 mest, Igralec (character), ki pove ime igralca, Hitrost (value), meritev serve v km/s, Leto(integer), kdaj se je to zgodilo in Spol(factor).
 
 ```
-kable(hitrosti.serve[1:5, ], caption ='Hitrost serve.')
+
 ```
 
 V drugi tabeli **zmagovalci** so podatki o zmagovalcih Grand Slam turnirja in njihovem državljanstvu, razvrščene v 4 stolpce: Leto(integer), ki prikazuje leto prvenstva, Prvenstvo(character) predstavlja ime enega od štirih prvenstev Grand Slama (ZDA, Anglija, Francija ali Avstralija), stolpec Zmagovalec(character) prikazuje ime zmagovalca in stolpec Država(charachter) pove iz katere države prihaja.
