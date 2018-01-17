@@ -60,17 +60,22 @@ kable(head(zmagovalci), align="cccc")
 
 ```
 
-V tretji tabeli **ponovitev** sta 2 stolpca:
 
-- *Drzava*; spremenljivka, ki prikazuje države po vrstnem redu glede na število zmag na Grand Slam turnirjih,
-- *Ponovitve*; meritev, ki ponazarja seštevek zmag iz tabele zmagovalci.
-
-V četrti tabeli **tenisaci** so razporejeni najboljši igralci glede na sezono. Tabela ima 6 stolpcev:
-
-- *Sezona*; spremenljivka,
-- *Na_prostem*; spremenljivka,
-- *V_dvorani*; spremenljivka, oba stolpca prikazujeta število dobljenih tekem na prostem in v dvorani. - *Prevladujoca_starost*; spremelnjivka, ki prikazuje starost, ki se je med igralci pojavila največkrat,
-- *Igralec*; spremenljivka, ki pove ime igralca, 
-- *Drzava*; spremenljivka, ki prikazuje ime države, od kod igralec prihaja.
+3. `ponovitev` - podatki o številu zmag na Grand Slam turnirjih posameznih držav
+  - `Drzava` - spremenljivka: ime države (charachter),
+  - `Ponovitev` - spremenljivka: število zmag, seštetih iz tabele zmagovalci,
 
 
+
+4. `tenisaci` - podatki o zmagovalcih Grand Slam turnirja,
+  - `Sezona` - spremenljivka: leto dogodka (numeric),
+  - `Na_prostem` - spremenljivka: število turnirjev na prostem (factor),
+  - `V_dvorani` - spremenljivka: število turnirjev v dvorani (factor),
+  - `Prevladujoca_starost` - spremenljivka: najpogostejša starost med igralci (character)
+  - `Igralec` - spremenljivka: ime igralcev (character),
+  - `Drzava` - spremenljivka: ime države (charachter)
+  
+```{r tenisaci, echo=FALSE, message=FALSE}
+kable(head(tenisaci), align="cccccc")
+
+```
