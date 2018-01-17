@@ -1,5 +1,6 @@
 # 3. faza: Vizualizacija podatkov
 
+
 #Graf 1 najboljših 10 igralcev z največ zmagami na Grand Slam turnirjih.
 top10 <- ggplot(zmagovalci %>% group_by(Zmagovalec) %>% summarise(stevilo = n()) %>%
                   arrange(desc(stevilo)) %>% top_n(10),
@@ -41,5 +42,4 @@ zemljevid.drzav <- ggplot() +
                aes(x = long, y = lat, group = group, fill = stevilo))
 
 print(zemljevid.drzav)
-
 

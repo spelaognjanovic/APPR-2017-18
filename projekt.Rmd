@@ -79,3 +79,5 @@ kable(head(zmagovalci), align="cccc")
 kable(head(tenisaci), align="cccccc")
 
 ```
+
+#Analiza in vizualizacija podatkov
