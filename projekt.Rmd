@@ -7,7 +7,7 @@ output:
     includes:
       in_header: lib/styles.sty
     latex_engine: xelatex
-runtime: shiny
+
 ---
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE}
@@ -27,19 +27,50 @@ Za temo sem si izbrala tenis. V projektu bom primerjala hitrost serve moških in
 
 #Obdelava, uvoz in čiščenje podatkov
 
+```{r uvoz, echo=FALSE, message=FALSE, warning=FALSE}
+source("uvoz/uvoz.r", encoding = "UTF-8")
+```
 
 Podatke sem uvozila v html oblikah iz [wikipedije](https://en.wikipedia.org/wiki/List_of_Grand_Slam_men%27s_singles_champions) in s [strani](http://www.ultimatetennisstatistics.com/seasons) s podtki o tenisu. Nato sem jih v uvozu preoblikovala v štiri tidy data tabele. 
 
 ###Opis tabel
 
-V prvi tabeli **hitrosti.serve** so podatki o tenisačih, ki imajo najmočnejšo servo v zgodovini tenisa. Podatki so zbrani za prvih deset moških in žensk. Tabela vsebuje 5 stolpcev in sicer Razvrstitev (numeric), ki prikazuje prvih 10 mest, Igralec (character), ki pove ime igralca, Hitrost (value), meritev serve v km/s, Leto(integer), kdaj se je to zgodilo in Spol(factor).
+
+1. `hitrosti.serve` - podatki o tenisačih, ki imajo najmočnejšo servo v zgodovini tenisa,
+  - `Igralec` - spremenljivka: ime igralca (charachter),
+  - `Hitrost` - meritev: merjena v km/s (numeric),
+  - `Leto` - spremenljivka: leto dogodka (numeric),
+  - `Spol` - spremenljivka: moški, ženski (factor)
+  
+
+```{r hitrosti.serve, echo=FALSE, message=FALSE}
+kable(head(hitrosti.serve), align="cccc")
 
 ```
 
+2. `zmagovalci` - podatki o zmagovalcih Grand Slam turnirja,
+  - `Leto` - spremenljivka: leto dogodka (numeric),
+  - `Prvenstvo` - spremenljivka: Anglija, Francija, ZDA, Avstralija (factor),
+  - `Zmagovalec` - spremenljivka: ime zmagovalca (character),
+  - `Drzava` - spremenljivka: narodnost (character)
+
+
+```{r zmagovalci, echo=FALSE, message=FALSE}
+kable(head(zmagovalci), align="cccc")
+
 ```
 
-V drugi tabeli **zmagovalci** so podatki o zmagovalcih Grand Slam turnirja in njihovem državljanstvu, razvrščene v 4 stolpce: Leto(integer), ki prikazuje leto prvenstva, Prvenstvo(character) predstavlja ime enega od štirih prvenstev Grand Slama (ZDA, Anglija, Francija ali Avstralija), stolpec Zmagovalec(character) prikazuje ime zmagovalca in stolpec Država(charachter) pove iz katere države prihaja.
+V tretji tabeli **ponovitev** sta 2 stolpca:
 
-V tretji tabeli **ponovitev** sta 2 stolpca, prvi stolpec Drzava(charachter) prikazuje države po vrstnem redu glede na število zmag na Grand Slam turnirjih. Drugi stolpec Ponovitve(numeric) pa ponazarja seštevek zmag iz tabele zmagovalci.
+- *Drzava*; spremenljivka, ki prikazuje države po vrstnem redu glede na število zmag na Grand Slam turnirjih,
+- *Ponovitve*; meritev, ki ponazarja seštevek zmag iz tabele zmagovalci.
 
-V četrti tabeli **tenisaci** so razporejeni najboljši igralci glede na sezono. Tabela ima 6 stolpcev, prvi Sezona(integer), drugi Na_prostem(integer) in tretji V_dvorani(integer), ki prikazujeta število dobljenih tekem na prostem in v dvorani. Četrti stolpec Prevladujoca_starost(integer), prikazuje starost, ki se je med igralci pojavila največkrat. Peti stolpec Igralec(character) pove ime igralca, šesti stolpec Drzava(character) pa prikazuje ime države, od kod igralec prihaja.
+V četrti tabeli **tenisaci** so razporejeni najboljši igralci glede na sezono. Tabela ima 6 stolpcev:
+
+- *Sezona*; spremenljivka,
+- *Na_prostem*; spremenljivka,
+- *V_dvorani*; spremenljivka, oba stolpca prikazujeta število dobljenih tekem na prostem in v dvorani. - *Prevladujoca_starost*; spremelnjivka, ki prikazuje starost, ki se je med igralci pojavila največkrat,
+- *Igralec*; spremenljivka, ki pove ime igralca, 
+- *Drzava*; spremenljivka, ki prikazuje ime države, od kod igralec prihaja.
+
+
