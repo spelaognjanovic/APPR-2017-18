@@ -1,5 +1,5 @@
 ---
-title: "Analiza podatkov v programu R"
+title: "Analiza tenis turnirjev"
 author: "Špela Ognjanović"
 output:
   html_document: default
