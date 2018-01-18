@@ -1,6 +1,6 @@
 ---
-title: "Poročilo pri predmetu Analiza podatkov s programom R"
-author: "Študent FMF"
+title: "Analiza podatkov v programu R"
+author: "Špela Ognjanović"
 output:
   html_document: default
   pdf_document:
@@ -81,3 +81,9 @@ kable(head(tenisaci), align="cccccc")
 ```
 
 #Analiza in vizualizacija podatkov
+
+```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE}
+source("vizualizacija/vizualizacija.r")
+```
+
+

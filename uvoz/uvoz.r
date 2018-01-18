@@ -47,7 +47,7 @@ uvozi.zmagovalce <- function() {
   zmagovalci.tidy <- melt(zmagovalci, id.vars = "Leto", variable.name = "Prvenstvo",
                           value.name = "Zmagovalec") %>% inner_join(drzave.tidy) %>%
     mutate(Zmagovalec = Zmagovalec %>% strapplyc("^([^(]*)") %>% unlist() %>%
-             trimws() %>% parse_character()) %>% filter(Leto >= 1950)
+             trimws()) %>% filter(Leto >= 1950)
   
   return(zmagovalci.tidy)
   
