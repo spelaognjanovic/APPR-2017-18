@@ -5,24 +5,21 @@
 top10 <- ggplot(zmagovalci %>% group_by(Zmagovalec) %>% summarise(stevilo = n()) %>%
                   arrange(desc(stevilo)) %>% top_n(10),
                 aes(x = reorder(Zmagovalec, -stevilo), y = stevilo)) +
-  geom_col(fill="blue") + xlab("Igralec") + ylab("Število zmag na") +
+  geom_col(fill="blue") + xlab("Igralec") + ylab("Število zmag") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
   ggtitle("Razvrstitev po številu zmag na Grand Slam turnirjih")
 
-plot(top10)
 
 #Graf 2 hitrost serve
 serva <- ggplot(hitrosti.serve, aes(x = Razvrstitev, y = Hitrost, color = Spol)) +
   geom_line(size = 0.75) + geom_point(size = 1.5) +
   xlab("Razporeditev") + ylab("Km/s") + ggtitle("Hitrost serve")
 
-plot(serva)
 
 #Graf 3, prikaz dominantne starosti
 leto <- ggplot(tenisaci, aes(x = Sezona, y = Prevladujoca_starost)) + geom_line() + geom_point() +
   xlab("Leto") + ylab("Starost") + ggtitle("Prevladujoča starost igralcev v posamezni sezoni") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) 
-plot(leto)
 
 # Uvozimo zemljevid.
 
@@ -41,5 +38,5 @@ zemljevid.drzav <- ggplot() +
                  right_join(svet),
                aes(x = long, y = lat, group = group, fill = stevilo))
 
-print(zemljevid.drzav)
+
 
