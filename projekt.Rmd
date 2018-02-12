@@ -30,8 +30,9 @@ Za temo sem si izbrala tenis. V projektu bom primerjala hitrost serve moških in
 ```{r uvoz, echo=FALSE, message=FALSE, warning=FALSE}
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
+
 ```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE}
-source("vizualizacija/vizualizacija.r")
+source("vizualizacija/vizualizacija.r",encoding ="UTF-8")
 ```
 
 Podatke sem uvozila v html oblikah iz [wikipedije](https://en.wikipedia.org/wiki/List_of_Grand_Slam_men%27s_singles_champions) in s [strani](http://www.ultimatetennisstatistics.com/seasons) s podtki o tenisu. Nato sem jih v uvozu preoblikovala v štiri tidy data tabele. 
@@ -68,8 +69,8 @@ kable(head(zmagovalci), align="cccc")
   - `Drzava` - spremenljivka: ime države (charachter),
   - `Ponovitev` - spremenljivka: število zmag, seštetih iz tabele zmagovalci(numeric).
 
-```{r ponovitev, echo=FALSE, message=FALSE, fig.align='center'}
-kable(head(ponovitev), align="cc")
+```{r ponovitev, echo=FALSE, message=FALSE}
+kable(head(ponovitev), align="lc")
 ```
 
 4. `tenisaci` - podatki o zmagovalcih Grand Slam turnirja,
@@ -91,7 +92,7 @@ kable(head(tenisaci), align="cccccc")
 
 Pri analizi podatkov sem si pomaga s stolpičnimi, črtastimi grafi ter zemljevidom sveta.
 
-Prvi graf prikazuje prvih deset igralcev, z največ osvojenimi zmagami na Grand Slam turnirjih od leta 1850 pa do danes. Vodilni je Roger Federer z 19 zmagami. Opazimo, da na lestvici ni nobenega bivšega, uspešnega igralca, saj včasih niso tako pogosto zmagovali kot danes, ko posamezni igralec zmaguje kar po več sezon.
+Prvi graf prikazuje prvih deset igralcev, z največ osvojenimi zmagami na Grand Slam turnirjih od leta 1950 pa do danes. Vodilni je Roger Federer z 20 zmagami, ki trenutno velja za najboljšega tenisača na svetu. Opazimo, da dandanes posamezni igralec zmaguje kar po več sezon.
 
 ```{r top10, echo=FALSE, message=FALSE, fig.align='center' }
 print(top10)
@@ -113,8 +114,8 @@ print(serva)
 ```
 
 
-Na zemljevidu sem upodobila države, ki so kdarkoli od leta 1850 zmagale na Grand Slam turnirjih. Meritev za zgodnejša leta nisem upoštevala, saj se vmes nekatera prvenstva niso odvijala in bi zaradi tega lahko prišlo do odstopanj oz. nekatere države bi lahko bile v prednosti. Hotela sem videti, katere države so najuspešnejše v tenisu. Vodilni in enotni sta si Avstralija in ZDA s 66 zmagami, kar je bilo zelo proti pričakovanjem.  Za takšno izstopanje Avstralije in ZDA pa sklepam, da je prišlo zaradi tega, saj v obeh državah prirejajo Grand Slam turnirja (Odprto prvenstvo Avstralije in Odprto prvenstvo ZDA) in je potem najverjetneje največ udeležencev domačinov, vsaj v preteklosti menim, da je bilo tako zaradi oddaljenosti in težje dostopnosti med kontinenti. Pričakovala sem, da bo obarvanih več držav na sploh, tako pa jih je samo 22.
-Najuspešnejša evropska država je Španija s 27 zmagami, takoj za njo pa Švedska s 26 in na tretjem mestu Švica z 22. Glede na to, da se druga dva Grand Slam turnirja (Odprto prvenstvo Francije in Odprto prvenstvo Anglije) izvajata v Evropi, sem pričakavoal večjo uspešnost Evropskih držav.
+Na zemljevidu sem upodobila države, ki so kdarkoli od leta 1950 zmagale na Grand Slam turnirjih. Meritev za zgodnejša leta nisem upoštevala, saj se vmes nekatera prvenstva niso odvijala in bi zaradi tega lahko prišlo do odstopanj oz. nekatere države bi lahko bile v prednosti. Hotela sem videti, katere države so najuspešnejše v tenisu. Vodilni in enotni sta si Avstralija in ZDA s 66 zmagami, kar je bilo zelo proti pričakovanjem.  Za takšno izstopanje Avstralije in ZDA pa sklepam, da je prišlo zaradi tega, saj v obeh državah prirejajo Grand Slam turnirja (Odprto prvenstvo Avstralije in Odprto prvenstvo ZDA) in je potem najverjetneje največ udeležencev domačinov, vsaj v preteklosti menim, da je bilo tako zaradi oddaljenosti in težje dostopnosti med kontinenti. Pričakovala sem, da bo obarvanih več držav na sploh, tako pa jih je samo 22.
+Najuspešnejša evropska država je Španija s 27 zmagami, takoj za njo pa Švedska s 26 in na tretjem mestu Švica z 22. Zanimivo je, da je Švici 20 zmag prinesel samo en igralec, Roger Federer. Glede na to, da se druga dva Grand Slam turnirja (Odprto prvenstvo Francije in Odprto prvenstvo Anglije) izvajata v Evropi, sem pričakavoal večjo uspešnost Evropskih držav.
 
 ```{r zemljevid.drzav, echo=FALSE, message=FALSE, fig.align='center'}
 print(zemljevid.drzav)
