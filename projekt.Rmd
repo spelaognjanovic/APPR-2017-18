@@ -23,7 +23,7 @@ source("lib/libraries.r", encoding = "UTF-8")
 
 ![](http://www.tic-sb.si/assets/gallery/60/683.jpg)
 
-Za temo sem si izbrala tenis. V projektu bom primerjala hitrost serve moških in žensk, najboljših 10 igralcev po številu zmag na Grand Slam turnirjih. Število zmag bom primerjala tudi po državah in tako videla, katera država je najuspešnejša. Primerjala bom tudi kako starost igralcev vpliva na njihovo kariero. 
+Za temo sem si izbrala tenis. V projektu bom primerjala hitrost serve moških in žensk, najboljših 10 igralcev po številu zmag na Grand Slam turnirjih. Število zmag bom primerjala tudi po državah in tako videla, katera država je najuspešnejša. Primerjala bom tudi kako se kariera igralcev daljša, glede na njihovo starost.
 
 #Obdelava, uvoz in čiščenje podatkov
 
@@ -92,21 +92,21 @@ kable(head(tenisaci), align="cccccc")
 
 Pri analizi podatkov sem si pomaga s stolpičnimi, črtastimi grafi ter zemljevidom sveta.
 
-Prvi graf prikazuje prvih deset igralcev, z največ osvojenimi zmagami na Grand Slam turnirjih od leta 1950 pa do danes. Vodilni je Roger Federer z 20 zmagami, ki trenutno velja za najboljšega tenisača na svetu. Opazimo, da dandanes posamezni igralec zmaguje kar po več sezon.
+Prvi graf prikazuje prvih deset igralcev, z največ osvojenimi zmagami na Grand Slam turnirjih od leta 1950 pa do danes. Vodilni je Roger Federer z 20 zmagami, ki trenutno velja za najboljšega tenisača na svetu. Opazimo, da dandanes posamezni igralec zmaguje kar po več sezon. Neativni igralci kot sta(..) so dosegli le do največ 10 zmag v svoji karieri. Sedaj pa se to vedno bolj presega.  
 
 ```{r top10, echo=FALSE, message=FALSE, fig.align='center' }
 print(top10)
 ```
 
 
-Ta graf prikazuje povprečno starost igralcev v posamezni sezoni in kako se spreminja skozi leta. Opazimo, da povprečna starost igralcev na tekmovanjih narašča, kar je skladno tudi s prejšnjim grafom. Igralci bodo vedno bolj vzdržljivi, njihova kariera bo trajala dlje, starost ne bo predstavljala takšne ovire. Razlog je tudi v tem, da se življenjska doba podaljšuje, kar predstavlja večjo fizično sposobnost tudi v poznejših letih. Med starejšimi in mlajšimi igralci bo vedno večji razpon, možnost zmage pa za vse enaka.
+Ta graf prikazuje povprečno starost igralcev v posamezni sezoni in kako se spreminja skozi leta. Opazimo, da povprečna starost igralcev na tekmovanjih narašča, kar je skladno tudi s prejšnjim grafom. Igralci bodo vedno bolj vzdržljivi, njihova kariera bo trajala dlje, do poznejšega leta pri posamezniku. Razlog je tudi v tem, da se življenjska doba podaljšuje, kar predstavlja večjo fizično sposobnost tudi v poznejših letih. Med starejšimi in mlajšimi igralci bo vedno večji razpon, možnost zmage pa za vse enaka.
 
 ```{r leto, echo=FALSE, message=FALSE, fig.align='center' }
 print(leto)
 ```
 
 
-Graf prikazuje hitrost serve za prvih deset moških in žensk. Zanimivo mi je bilo, ko sem opazila, da nobenega moškega iz prvega grafa, ki so trenutno najboljši igralci, ni na tem seznamu igralcev z najmočnejšo servo. Kar pa pove, da si lahko najboljši tudi če nimaš najmočnejše serve. 
+Graf prikazuje hitrost serve za prvih deset moških in žensk. Zanimivo mi je bilo, ko sem opazila, da nobenega moškega iz prvega grafa, ki so trenutno najboljši igralci, ni na tem seznamu igralcev z najmočnejšo servo. Kar pa pomeni, da na zmago ne vpliva le en dejavnik in to je serva. 
 Nisem pričakovala takšne razlike med moškimi in ženskami, za kar 53 km/h. Tudi sam razpon med prvim in desetim mestom pri moških je precej večji kot pri ženskah. 
 
 ```{r serva, echo=FALSE, message=FALSE, fig.align='center' }
@@ -114,11 +114,14 @@ print(serva)
 ```
 
 
-Na zemljevidu sem upodobila države, ki so kdarkoli od leta 1950 zmagale na Grand Slam turnirjih. Meritev za zgodnejša leta nisem upoštevala, saj se vmes nekatera prvenstva niso odvijala in bi zaradi tega lahko prišlo do odstopanj oz. nekatere države bi lahko bile v prednosti. Hotela sem videti, katere države so najuspešnejše v tenisu. Vodilni in enotni sta si Avstralija in ZDA s 66 zmagami, kar je bilo zelo proti pričakovanjem.  Za takšno izstopanje Avstralije in ZDA pa sklepam, da je prišlo zaradi tega, saj v obeh državah prirejajo Grand Slam turnirja (Odprto prvenstvo Avstralije in Odprto prvenstvo ZDA) in je potem najverjetneje največ udeležencev domačinov, vsaj v preteklosti menim, da je bilo tako zaradi oddaljenosti in težje dostopnosti med kontinenti. Pričakovala sem, da bo obarvanih več držav na sploh, tako pa jih je samo 22.
-Najuspešnejša evropska država je Španija s 27 zmagami, takoj za njo pa Švedska s 26 in na tretjem mestu Švica z 22. Zanimivo je, da je Švici 20 zmag prinesel samo en igralec, Roger Federer. Glede na to, da se druga dva Grand Slam turnirja (Odprto prvenstvo Francije in Odprto prvenstvo Anglije) izvajata v Evropi, sem pričakavoal večjo uspešnost Evropskih držav.
+Na zemljevidu sem upodobila države, ki so kdarkoli od leta 1950 zmagale na Grand Slam turnirjih. Meritev za zgodnejša leta nisem upoštevala, saj se vmes nekatera prvenstva niso odvijala in bi zaradi tega lahko prišlo do odstopanj oz. nekatere države bi lahko bile v prednosti. Hotela sem videti, katere države so najuspešnejše v tenisu. Vodilni in enotni sta si Avstralija in ZDA s 65 zmagami, kar je bilo zelo proti pričakovanjem.  Za takšno izstopanje Avstralije in ZDA pa sklepam, da je prišlo zaradi tega, saj v obeh državah prirejajo Grand Slam turnirja (Odprto prvenstvo Avstralije in Odprto prvenstvo ZDA) in je potem najverjetneje največ udeležencev domačinov, vsaj v preteklosti menim, da je bilo tako, zaradi oddaljenosti in težje dostopnosti med kontinenti. Pričakovala sem, da bo obarvanih več držav na sploh, tako pa jih je samo 22.
+Najuspešnejša evropska država je Španija s 27 zmagami, takoj za njo pa Švedska s 26 in na tretjem mestu Švica z 22. Zanimivo je, da je Švici 20 zmag prinesel samo en igralec, Roger Federer. Glede na to, da se druga dva Grand Slam turnirja (Odprto prvenstvo Francije in Odprto prvenstvo Anglije) izvajata v Evropi, sem pričakavoal večjo uspešnost Evropskih držav. 
 
 ```{r zemljevid.drzav, echo=FALSE, message=FALSE, fig.align='center'}
 print(zemljevid.drzav)
 ```
 
+#Zaključek
 
+V analizi sem primerjala več dejavnikov, ki vplivajo na zmago. Ugotovila sem, da moč serve nanjo ne vpliva, glede starosti pa, da se igralska doba podaljšuje.
+Glede uspešnosti posameznih držav, sem ugotovila, da ne moremo sklepati na podlagi enega igralca kakšna je uspešnost te države v tenisu. Saj po številu zmag sta najuspešnejši Avstralija in Zda, trenutno najboljši igralci pa so iz Evrope. 
