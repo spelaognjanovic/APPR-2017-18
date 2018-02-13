@@ -92,7 +92,7 @@ kable(head(tenisaci), align="cccccc")
 
 Pri analizi podatkov sem si pomaga s stolpičnimi, črtastimi grafi ter zemljevidom sveta.
 
-Prvi graf prikazuje prvih deset igralcev, z največ osvojenimi zmagami na Grand Slam turnirjih od leta 1950 pa do danes. Vodilni je Roger Federer z 20 zmagami, ki trenutno velja za najboljšega tenisača na svetu. Opazimo, da dandanes posamezni igralec zmaguje kar po več sezon. Neativni igralci kot sta(..) so dosegli le do največ 10 zmag v svoji karieri. Sedaj pa se to vedno bolj presega.  
+Prvi graf prikazuje prvih deset igralcev, z največ osvojenimi zmagami na Grand Slam turnirjih od leta 1950 pa do danes. Vodilni je Roger Federer z 20 zmagami, ki trenutno velja za najboljšega tenisača na svetu. Opazimo, da dandanes posamezni igralec zmaguje kar po več sezon. Neativni igralci kot sta Roy Emerson in Rod Laver, so dosegali le do največ 12 zmag v svoji karieri. Sedaj pa se to vedno bolj presega.  
 
 ```{r top10, echo=FALSE, message=FALSE, fig.align='center' }
 print(top10)
