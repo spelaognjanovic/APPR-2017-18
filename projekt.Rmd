@@ -121,7 +121,8 @@ Najuspešnejša evropska država je Španija s 27 zmagami, takoj za njo pa Šved
 print(zemljevid.drzav)
 ```
 
-###Aplikacija
+#Aplikacija
+
 Za lažjo primerjavo hitrosti serve med moškimi in ženskami sem naredila pregled po spolu, kjer izbereš razvrstitev (mesto uvrstitve) in pokaže vrednost za oba spola.
 
 ```{r shiny, echo = FALSE,message=FALSE, warning=FALSE}
