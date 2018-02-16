@@ -13,8 +13,10 @@ uvozi.hitrost.serve <- function() {
   tabele[[2]]$Spol <- factor("Zenske", levels = Spoli)
   colnames(tabele[[2]]) <- colnames(tabele[[1]])
   tabela1 <- bind_rows(tabele) %>% mutate(Speed = parse_number(Speed),
-                                          Event = parse_number(Event)) %>%
-    filter(Rank <= 10)
+                                             Event = parse_number(Event),
+                                             Player = Player %>% strapplyc("^([^[]*)") %>%
+                                               unlist()) %>% filter(Rank <= 10)
+
   colnames(tabela1) <- c("Razvrstitev", "Igralec", "Hitrost", "Leto","Spol")
   return(tabela1)
 }

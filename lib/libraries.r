@@ -5,8 +5,11 @@ library(rvest)
 library(gsubfn)
 library(ggplot2)
 library(reshape2)
+library(tidyr)
+library(rmarkdown)
 library(shiny)
 library(httr)
 library(digest)
 # Uvozimo funkcije za pobiranje in uvoz zemljevida.
 source("lib/uvozi.zemljevid.r", encoding = "UTF-8")
+

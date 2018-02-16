@@ -1,17 +1,21 @@
+
+
 library(shiny)
 
 shinyUI(fluidPage(
   
-  titlePanel("Slovenske občine"),
+  titlePanel("Primerjava hitrosti serve"),
   
   tabsetPanel(
-      tabPanel("Velikost družine",
-               DT::dataTableOutput("druzine")),
-      
-      tabPanel("Število naselij",
-               sidebarPanel(
-                  uiOutput("pokrajine")
-                ),
-               mainPanel(plotOutput("naselja")))
+    tabPanel("Primerjava po spolu",
+             sidebarPanel(
+               selectInput("mesto",
+                           label = "Izberite razvrstitev",
+                           choices = sort(unique(hitrosti.serve$Razvrstitev))
+                           
+             ),
+             mainPanel(plotOutput("hitrosti.serve"))
     )
+    )
+  )
 ))
