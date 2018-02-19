@@ -123,7 +123,7 @@ print(zemljevid.drzav)
 
 #Aplikacija
 
-Za lažjo primerjavo hitrosti serve med moškimi in ženskami sem naredila pregled po spolu, kjer izbereš razvrstitev (mesto uvrstitve) in pokaže vrednost za oba spola.
+Za lažjo primerjavo hitrosti serve med moškimi in ženskami sem naredila pregled po spolu, kjer izbereš razvrstitev (mesto uvrstitve) in pokaže vrednost za oba spola. Kjer je stolpec ločen s črto, pomeni, da si tisto mesto delita dva igralca. Kjer pa je prikazan samo en stolpec, pa pomeni da pri nasprotnem spolu tega mesta ni, saj si predhodnega dva delita.
 
 ```{r shiny, echo = FALSE,message=FALSE, warning=FALSE}
 shinyAppDir("shiny", options=list(width="100%", height=600, align = "r"))
