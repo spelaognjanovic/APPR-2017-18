@@ -13,9 +13,9 @@ shinyUI(fluidPage(
                            label = "Izberite razvrstitev",
                            choices = sort(unique(hitrosti.serve$Razvrstitev))
                            
-             ),
-             mainPanel(plotOutput("hitrosti.serve"))
+             )),
+    mainPanel(plotOutput("hitrosti.serve"))
     )
     )
   )
-))
+)
