@@ -15,7 +15,7 @@ uvozi.hitrost.serve <- function() {
   tabela1 <- bind_rows(tabele) %>% mutate(Speed = parse_number(Speed),
                                              Event = parse_number(Event),
                                              Player = Player %>% strapplyc("^([^[]*)") %>%
-                                               unlist()) %>% filter(Rank <= 10)
+                                               unlist()) %>% filter(Rank <= 9)
 
   colnames(tabela1) <- c("Razvrstitev", "Igralec", "Hitrost", "Leto","Spol")
   return(tabela1)
