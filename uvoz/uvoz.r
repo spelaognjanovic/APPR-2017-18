@@ -6,7 +6,7 @@
 uvozi.hitrost.serve <- function() {
   link <- "https://en.wikipedia.org/wiki/Fastest_recorded_tennis_serves"
   stran <- html_session(link) %>% read_html()
-  tabele <- stran %>% html_nodes(xpath="//table[@class='wikitable']") %>% lapply(html_table, fill = TRUE)
+  tabele <- stran %>% html_nodes(xpath="//table[@class='wikitable sortable']") %>% lapply(html_table, fill = TRUE)
   Spoli <- c("Moski", "Zenske")
   tabele[[1]] <- tabele[[1]][1:4]
   tabele[[1]]$Spol <- factor("Moski", levels = Spoli)
