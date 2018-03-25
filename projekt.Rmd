@@ -23,7 +23,7 @@ source("lib/libraries.r", encoding = "UTF-8")
 
 ![](http://www.tic-sb.si/assets/gallery/60/683.jpg)
 
-Za temo sem si izbrala tenis. V projektu bom primerjala hitrost serve moških in žensk, najboljših 10 igralcev po številu zmag na Grand Slam turnirjih. Število zmag bom primerjala tudi po državah in tako videla, katera država je najuspešnejša. Primerjala bom tudi kako se kariera igralcev daljša, glede na njihovo starost.
+Za KLAAtemo sem si izbrala tenis. V projektu bom primerjala hitrost serve moških in žensk, najboljših 10 igralcev po številu zmag na Grand Slam turnirjih. Število zmag bom primerjala tudi po državah in tako videla, katera država je najuspešnejša. Primerjala bom tudi kako se kariera igralcev daljša, glede na njihovo starost.
 
 #Obdelava, uvoz in čiščenje podatkov
 
